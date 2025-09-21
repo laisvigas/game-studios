@@ -4,10 +4,13 @@
 
 @section('content')
     <h1>Lista de Estúdios</h1>
-    <p>todos os estúdios cadastrados aqui.</p>
+    <p>Todos os estúdios cadastrados aqui.</p>
 
-    @foreach ($studios as $studio)
-    <x-card-studio :studio="$studio" />
-    @endforeach
-
+    <div class="row">
+        @foreach ($studios as $studio)
+            <div class="col-lg-3 col-md-4 col-12 mb-4">
+                <x-card-studio :studio="$studio" />
+            </div>
+        @endforeach
+    </div>
 @endsection
