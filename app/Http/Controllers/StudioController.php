@@ -29,7 +29,19 @@ class StudioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'studio_name' => 'required|string|max:255',
+            'logo' => 'nullable|string',
+            'description' => 'nullable|string',
+        ]);
+
+        Studio::create([
+            'studio_name' => $request->studio_name,
+            'logo' => $request->logo,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('studios.index')->with('success', 'Studio created successfully.');
     }
 
     /**
