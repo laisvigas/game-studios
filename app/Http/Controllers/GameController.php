@@ -1,20 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Game;
 use App\Models\Studio;
 use Illuminate\Http\Request;
 
-class StudioController extends Controller
+class GameController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $studios = Studio::withCount('games')->get(); // count the number of games for each studio
-        return view('studios.index', compact('studios'));
+        //
     }
 
+    /**
+     * Display a listing of the resource associated to the id.
+     */
+    public function indexByStudio(Studio $studio)
+    {
+        $games = $studio->games()->orderByDesc('released_date');
+        return view('games.index', compact('studio','games'));
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -14,6 +14,8 @@ class Game extends Model
         'game_name',
         'image',
         'released_date',
+        'genre',
+        'description'
     ];
 
     // Um jogo pertence a um estúdio

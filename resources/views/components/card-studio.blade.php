@@ -7,6 +7,9 @@
   <div class="card-body d-flex flex-column">
     <h5 class="card-title">{{ $studio->studio_name }}</h5>
     <p class="card-text flex-grow-1">{{ $studio->description }}</p>
-    <a href="#" class="btn btn-primary mt-auto">See more</a>
+    <p class="card-text">Games published: {{ $studio->games_count }}</p>
+    <a href="{{ route('studios.games.index', $studio->id) }}" class="btn btn-primary mt-auto">
+      See more
+    </a>
   </div>
 </div>
