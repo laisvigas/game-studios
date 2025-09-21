@@ -16,9 +16,6 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-start"> 
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('studios.index') }}">Studios</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="#">About Us</a>
         </li>
       </ul>

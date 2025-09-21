@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Studio;
 use Illuminate\Http\Request;
 
 class StudioController extends Controller
@@ -11,7 +11,9 @@ class StudioController extends Controller
      */
     public function index()
     {
-        return view('studios.index');
+        $studios = Studio::all();
+        return view('studios.index', compact('studios'));
+
     }
 
     /**
