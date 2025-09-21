@@ -10,7 +10,7 @@
 
     <x-header />
 
-    <main class="container mt-4">
+    <main class="container mt-4 p-5">
         @yield('content')
     </main>
 

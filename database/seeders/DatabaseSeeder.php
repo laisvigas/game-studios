@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\StudioSeeder;
+use Database\Seeders\GameSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +20,11 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@email.com',
+        ]);
+
+        $this->call([
+            StudioSeeder::class,
+            GameSeeder::class,
         ]);
     }
 }

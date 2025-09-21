@@ -20,7 +20,7 @@ class GameController extends Controller
      */
     public function indexByStudio(Studio $studio)
     {
-        $games = $studio->games()->orderByDesc('released_date');
+        $games = $studio->games()->orderByDesc('released_date')->get();
         return view('games.index', compact('studio','games'));
     }
 

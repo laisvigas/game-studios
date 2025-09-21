@@ -2,7 +2,7 @@
   <div class="container">
     {{-- Logo ou nome da aplicação --}}
     <a class="navbar-brand" href="{{ url('/') }}">
-      <img src="logo.svg" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
+      <img src="/logo.svg" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
     </a>
 
     {{-- Botão do menu no mobile --}}

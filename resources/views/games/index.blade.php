@@ -3,13 +3,15 @@
 @section('title', 'Games')
 
 @section('content')
-    <h1>All games from ...</h1>
+  <h1>All games from {{ $studio->studio_name }}</h1>
 
-    <div class="row">
-        @foreach ($games as $game)
-            <div class="col-lg-3 col-md-4 col-12 mb-4">
-                <x-card-game :studio="$game" />
-            </div>
-        @endforeach
-    </div>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    @forelse ($games as $game)
+      <div class="col">
+        <x-card-game :game="$game" />
+      </div>
+    @empty
+      <p>No games found for this studio.</p>
+    @endforelse
+  </div>
 @endsection
