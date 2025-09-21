@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudioController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [StudioController::class, 'index'])->name('studios.index');
