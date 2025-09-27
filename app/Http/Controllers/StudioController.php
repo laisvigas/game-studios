@@ -12,7 +12,8 @@ class StudioController extends Controller
     public function index()
     {
         $studios = Studio::withCount('games')->get(); // count the number of games for each studio
-        return view('studios.index', compact('studios'));
+        $totalStudios = Studio::count(); // count the number of studios
+        return view('studios.index', compact('studios', 'totalStudios'));
     }
 
 

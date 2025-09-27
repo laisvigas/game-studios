@@ -3,9 +3,7 @@
 @section('title', 'Home')
 
 @section('content')
-    <h1>Lista de Estúdios</h1>
-    <p>Todos os estúdios cadastrados aqui.</p>
-
+    <h1>All Studios</h1>
     <div class="accordion pb-4" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header">
@@ -43,6 +41,11 @@
                 </div>
             </div>
         </div>
+    </div>
+
+
+    <div> 
+        <p>N° of studios: {{ $totalStudios }}</p>
     </div>
 
     <div class="row">
