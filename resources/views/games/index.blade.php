@@ -3,14 +3,20 @@
 @section('title', 'Games')
 
 @section('content')
-  <h1>All games from {{ $studio->studio_name }}</h1>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>All games from {{ $studio->studio_name }}</h1>
 
-    {{-- success message --}}
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+            @auth 
+              {{-- Import CSV --}}
+              @include('games._formAddCsv')
+          @endauth
+  </div>
+  {{-- success message --}}
+  @if (session('success'))
+      <div class="alert alert-success">
+          {{ session('success') }}
+      </div>
+  @endif
 
   <p class="card-text">Games published: {{ $gamesCount = $games->count() }}</p>
 

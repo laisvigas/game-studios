@@ -27,4 +27,5 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/games/{game}', [GameController::class, 'update'])->name('games.update');
     Route::post('/studios/{studio}/games', [GameController::class, 'store'])->name('games.store');
     Route::delete('/games/{game}', [GameController::class, 'destroy'])->name('games.destroy');
+    Route::post('/studios/{studio}/games/import', [GameController::class, 'importCsv'])->name('games.import');
 });

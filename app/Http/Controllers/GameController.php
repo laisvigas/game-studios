@@ -95,4 +95,59 @@ class GameController extends Controller
         return redirect()->route('studios.games.index', $game->studio_id)->with('success', 'Game successfully deleted!');
 
     }
+
+    /**
+     * import a csv file to add multiple games / if a game already exists on db, it won't add it again
+     */
+    public function importCsv(Request $request, Studio $studio) 
+    {
+        // validates if it's a csv
+        $request->validate([
+            'csv_file' => 'required|mimes:csv,txt',
+        ]);
+
+        // open file
+        $file = $request->file('csv_file');
+        $handle = fopen($file->getPathname(), 'r');
+
+        // detect delimiter: if the first line has ';', use it, otherwise ','
+        $firstLine = fgets($handle);
+        $delimiter = (strpos($firstLine, ';') !== false) ? ';' : ',';
+        rewind($handle);
+
+        // get header row
+        $header = fgetcsv($handle, 1000, $delimiter);
+
+        $imported = 0;
+
+        // read row by row
+        while (($row = fgetcsv($handle, 1000, $delimiter)) !== false) {
+            $data = array_combine($header, $row);
+
+            // skip if game_name is empty
+            if (empty($data['game_name'])) {
+                continue;
+            }
+
+            // skip if game already exists (dentro do estúdio)
+            if ($studio->games()->where('game_name', $data['game_name'])->exists()) {
+                continue;
+            }
+
+            // game already attached to a studio, fills studio_id
+            $studio->games()->create([
+                'game_name'     => $data['game_name'],
+                'released_date' => $data['released_date'] ?: now()->format('Y-m-d'),
+                'genre'         => $data['genre'] ?? null,
+                'description'   => $data['description'] ?? null,
+                'image'         => $data['image'] ?? null,
+            ]);
+
+            $imported++;
+        }
+
+        fclose($handle);
+
+        return back()->with('success', "$imported games imported successfully!");
+    }
 }
