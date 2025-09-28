@@ -3,6 +3,13 @@
 @section('title', 'Home')
 
 @section('content')
+
+    @auth 
+        <div class="small mb-5 fw-bold"> 
+            Welcome, {{ Auth::user()->name }}!
+        </div>
+    @endauth
+
     <h1>All Studios</h1>
 
       {{-- success message --}}
@@ -12,7 +19,8 @@
           </div>
       @endif
 
-    {{-- Accordion with a form to add a studion --}}
+    {{-- Accordion with a form to add a studion / just for authenticated users --}}
+    @auth 
     <div class="accordion pb-4" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header">
@@ -35,6 +43,7 @@
             </div>
         </div>
     </div>
+    @endauth
 
     <div class="small"> 
         <p>N° of studios: {{ $totalStudios }}</p>
