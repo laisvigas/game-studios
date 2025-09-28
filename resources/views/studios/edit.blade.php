@@ -7,7 +7,7 @@
   <div class="p-4 border rounded w-50">
     <h1 class="text-center">Editing {{ $studio->studio_name }}</h1>
         {{-- partial for the form --}}
-        @include('studios._form', [
+        @include('studios._formAddStudio', [
             'submitLabel' => 'Update',
             'action' => route('studios.update', $studio),
             'method' => 'PUT',

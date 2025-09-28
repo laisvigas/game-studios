@@ -4,13 +4,14 @@
 
 @section('content')
 
-    @auth 
-        <div class="small mb-5 fw-bold"> 
-            Welcome, {{ Auth::user()->name }}!
-        </div>
-    @endauth
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">The Ultimate Game Studios DB!</h1>
 
-    <h1>All Studios</h1>
+        @auth 
+            {{-- Import CSV --}}
+            @include('studios._formAddCsv')
+        @endauth
+    </div>
 
       {{-- success message --}}
       @if (session('success'))
@@ -33,7 +34,7 @@
                 <div class="accordion-body">
                     {{-- partial for the form --}}
                       <h1>Add Studio</h1>
-                        @include('studios._form', [
+                        @include('studios._formAddStudio', [
                             'submitLabel' => 'Add',
                             'action' => route('studios.store'),
                             'method' => null,
@@ -49,6 +50,7 @@
         <p>N° of studios: {{ $totalStudios }}</p>
     </div>
 
+    {{-- seaching by name --}}
     <form class="pb-4 d-flex gap-2" method="GET" action="{{ route('studios.index') }}">
         <input type="text" name="search" placeholder="search" value="{{ $search }}">
         <button class="btn btn-secondary">Search</button>

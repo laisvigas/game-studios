@@ -2,7 +2,7 @@
   <!-- Copyright -->
   <div class="text-center p-3">
     © 2025 Copyright:
-    <a class="text-body" href="#">Games Studios</a>
+    <span class="text-body">The Ultimate Game Studios</span>
   </div>
   <!-- Copyright -->
 </footer>

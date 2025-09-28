@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-end">
     @auth
       <form action="{{ route('studios.destroy', $studio) }}" method="POST" 
-            onsubmit="return confirm('Delete this studio?');">
+            onsubmit="return confirm('Are you sure you want to delete this studio? All associated games will be permanently deleted.');">
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-link p-0 text-danger" title="Delete">
