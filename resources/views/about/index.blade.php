@@ -5,8 +5,6 @@
 @section('content')
 <div class="d-flex justify-content-start align-items-start">
   <div class="text-start p-4 border rounded bg-light shadow">
-    <h1 class="mb-4">About the App</h1>
-
     <p class="lead">
       This project was developed as the final activity for the <strong>Back-End Frameworks</strong> course, taught by Professor <strong>Sara Monteiro</strong>.
     </p>
@@ -19,6 +17,7 @@
       <li>Authentication with <strong>Laravel Fortify</strong></li>
       <li>Middleware usage</li>
       <li>Database migrations</li>
+      <li>Use of seeders</li>
       <li>Integration with a <strong>MySQL database</strong></li>
       <li>Basic front-end styling with <strong>Bootstrap</strong></li>
     </ul>
