@@ -1,4 +1,13 @@
 <div class="card h-100 p-3">
+  <div class="d-flex justify-content-end">
+    <form action="{{ route('studios.destroy', $studio) }}" method="POST" onsubmit="return confirm('Delete this studio?');">
+      @csrf
+      @method('DELETE')
+      <button type="submit" class="btn btn-link p-0 text-danger" title="Delete">
+        x
+      </button>
+    </form>
+  </div>
   <div class="ratio ratio-16x9">
     <img src="{{ $studio->logo }}" 
          class="w-100 h-100 object-fit-contain" 
@@ -10,7 +19,7 @@
     <p class="card-text">Games published: {{ $studio->games_count }}</p>
 
     <div class="d-flex justify-content-between mt-auto">
-      <a href="#" class="btn btn-outline-secondary">
+      <a href="{{ route('studios.edit', $studio) }}" class="btn btn-outline-secondary btn-sm" title="Edit">
         <img src="{{ asset('/edit.svg') }}" alt="Edit" width="20" height="20">
       </a>
       <a href="{{ route('studios.games.index', $studio->id) }}" class="btn">

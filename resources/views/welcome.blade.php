@@ -3,6 +3,9 @@
 @section('title', 'Home')
 
 @section('content')
-    <h1>Lista de Estúdios</h1>
-    <p>todos os estúdios cadastrados aqui.</p>
+<div class="d-flex justify-content-center align-items-center">
+  <div class="p-4 border rounded w-50">
+    <h1 class="text-center">Welcome [add user name here]]</h1>
+  </div>
+</div>
 @endsection
