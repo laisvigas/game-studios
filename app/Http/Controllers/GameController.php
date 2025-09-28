@@ -21,7 +21,7 @@ class GameController extends Controller
     public function indexByStudio(Studio $studio)
     {
         $games = $studio->games()->orderByDesc('released_date')->get();
-        return view('games.index', compact('studio','games'));
+        return view('games.index', compact('studio', 'games'));
     }
 
     /**
@@ -35,10 +35,21 @@ class GameController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Studio $studio)
     {
-        //
+        $data = $request->validate([
+            'game_name' => 'required|string|max:255',
+            'released_date' => 'nullable|date',
+            'genre' => 'nullable|string|max:100',
+            'description' => 'nullable|string',
+            'image' => 'nullable|url',
+        ]);
+
+        $studio->games()->create($data);
+
+        return redirect()->route('studios.games.index', $studio)->with('success', 'Game created successfully!');
     }
+
 
     /**
      * Display the specified resource.
@@ -51,24 +62,37 @@ class GameController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Game $game)
     {
-        //
+        $studio = $game->studio; 
+        return view('games.edit', compact('game', 'studio'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Game $game)
     {
-        //
+        $data = $request->validate([
+            'game_name'     => ['required','string','max:255'],
+            'released_date' => ['nullable','date'],
+            'genre'         => ['nullable','string','max:100'],
+            'description'   => ['nullable','string','max:1000'],
+            'image'         => ['nullable','string'], 
+        ]);
+
+        $game->update($data);
+
+        return redirect()->route('studios.games.index', $game->studio)->with('success', 'Game successfully updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Game $game)
     {
-        //
+        $game->delete();
+        return redirect()->route('studios.games.index', $game->studio_id)->with('success', 'Game successfully deleted!');
+
     }
 }

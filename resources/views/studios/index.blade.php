@@ -33,8 +33,7 @@
             <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     {{-- partial for the form --}}
-                      <h1>Add Studio</h1>
-                        @include('studios._formAddStudio', [
+                        @include('studios._formAddEditStudio', [
                             'submitLabel' => 'Add',
                             'action' => route('studios.store'),
                             'method' => null,

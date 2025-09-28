@@ -1,4 +1,17 @@
 <div class="card h-100">
+    <div class="d-flex justify-content-end">
+    @auth
+      <form action="{{ route('games.destroy', $game) }}" method="POST" 
+            onsubmit="return confirm('Are you sure you want to delete this game?');">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-link p-0 text-danger" title="Delete">
+          x
+        </button>
+      </form>
+    @endauth
+  </div>
+
   <div class="row g-0 h-100">
     <!-- left content (image) -->
     <div class="col-12 col-md-4 align-self-center p-2">
@@ -29,9 +42,11 @@
         </p>
 
         <div class="mt-auto d-flex gap-2">
-          <a href="#" class="btn btn-outline-secondary btn-sm" title="Edit">
-            <img src="{{ asset('/edit.svg') }}" alt="Edit" width="18" height="18">
-          </a>
+          @auth
+            <a href="{{ route('games.edit', $game) }}" class="btn btn-outline-secondary btn-sm" title="Edit">
+              <img src="{{ asset('/edit.svg') }}" alt="Edit" width="20" height="20">
+            </a>
+          @endauth
         </div>
       </div>
     </div>

@@ -89,7 +89,7 @@ class StudioController extends Controller
     {
         $data = $request->validate([
             'studio_name' => ['required','string','max:255'],
-            'logo'        => ['nullable','url','max:2048'],
+            'logo'        => ['nullable','string','max:2048'],
             'description' => ['nullable','string','max:1000'],
         ]);
 
@@ -106,7 +106,7 @@ class StudioController extends Controller
     public function destroy(Studio $studio)
     {
         $studio->delete();
-        return redirect()->route('studios.index')->with('success', 'Studio dsuccessfully deleted!');
+        return redirect()->route('studios.index')->with('success', 'Studio successfully deleted!');
     }
 
     /**

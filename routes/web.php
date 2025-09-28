@@ -12,10 +12,19 @@ Route::get('/studios/{studio}/games', [GameController::class, 'indexByStudio'])-
 
 // private routes
 Route::middleware(['auth'])->group(function () {
+    // dashboard 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+    // studios
     Route::post('/studios', [StudioController::class, 'store'])->name('studios.store');
     Route::get('/studios/{studio}/edit', [StudioController::class, 'edit'])->name('studios.edit');
     Route::put('/studios/{studio}', [StudioController::class, 'update'])->name('studios.update');
     Route::delete('/studios/{studio}', [StudioController::class, 'destroy'])->name('studios.destroy');
     Route::post('/studios/import', [StudioController::class, 'importCsv']) ->name('studios.import');
+
+    // games
+    Route::get('/games/{game}/edit', [GameController::class, 'edit'])->name('games.edit');
+    Route::put('/games/{game}', [GameController::class, 'update'])->name('games.update');
+    Route::post('/studios/{studio}/games', [GameController::class, 'store'])->name('games.store');
+    Route::delete('/games/{game}', [GameController::class, 'destroy'])->name('games.destroy');
 });
