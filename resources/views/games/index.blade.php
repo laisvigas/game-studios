@@ -54,4 +54,8 @@
       <p>No games found for this studio.</p>
     @endforelse
   </div>
+
+  <div class="d-flex justify-content-end mt-4">
+    {{ $games->links() }}
+  </div>
 @endsection

@@ -11,6 +11,7 @@
             {{-- Import CSV --}}
             @include('studios._formAddCsv')
         @endauth
+        <a href="{{ route('studios.export') }}" class="btn btn-success">Download Studios</a>
     </div>
 
       {{-- success message --}}

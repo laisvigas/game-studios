@@ -5,6 +5,7 @@ use App\Models\Studio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class StudioController extends Controller
 {
@@ -160,5 +161,38 @@ class StudioController extends Controller
         fclose($handle);
 
         return back()->with('success', "$imported studios imported successfully!");
+    }
+
+    /**
+     * export a csv file with all studios
+     */
+    public function exportStudiosCsv()
+    {
+        $studios = Studio::withCount('games')->get();
+
+        $response = new StreamedResponse(function() use ($studios) {
+            $handle = fopen('php://output', 'w');
+
+            // header
+            fputcsv($handle, ['ID', 'Name', 'Description', 'Logo', 'Games Count']);
+
+            // Data
+            foreach ($studios as $studio) {
+                fputcsv($handle, [
+                    $studio->id,
+                    $studio->studio_name,
+                    $studio->description,
+                    $studio->logo,
+                    $studio->games_count
+                ]);
+            }
+
+            fclose($handle);
+        });
+
+        $response->headers->set('Content-Type', 'text/csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename="studios.csv"');
+
+        return $response;
     }
 }

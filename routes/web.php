@@ -9,6 +9,8 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', [StudioController::class, 'index'])->name('studios.index');
 Route::get('/about', [StudioController::class, 'about'])->name('about.index');
 Route::get('/studios/{studio}/games', [GameController::class, 'indexByStudio'])->name('studios.games.index');
+Route::get('/studios/export', [StudioController::class, 'exportStudiosCsv'])->name('studios.export');
+
 
 // private routes
 Route::middleware(['auth'])->group(function () {

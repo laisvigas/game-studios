@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Models\Studio;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -20,7 +21,7 @@ class GameController extends Controller
      */
     public function indexByStudio(Studio $studio)
     {
-        $games = $studio->games()->orderByDesc('released_date')->get();
+        $games = $studio->games()->orderByDesc('released_date')->paginate(10);
         return view('games.index', compact('studio', 'games'));
     }
 
