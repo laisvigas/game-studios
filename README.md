@@ -33,8 +33,8 @@ Authentication is powered by **Laravel Fortify**.
 
 Quickly test the import feature using the included CSV files:
 
-- `studios.csv` — multiple studios for bulk import  
-- `games-capcom.csv` — several games for the **Capcom** studio  
+- `1-games-capcom.csv` — several games for the **Capcom** studio 
+- `2-studios.csv` — multiple studios for bulk import   
 
 ➡️ Upload these files via the app’s CSV upload form to instantly populate your database and test this functionality.
 
