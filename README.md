@@ -77,3 +77,14 @@ User registration is disabled. Only preconfigured accounts (created via seeders)
     ```
 
 ---
+
+## 🗄 Database Dump
+
+This repository also includes a SQL dump with sample data.
+
+- File: `dump-db_game_studios.sql`
+- Contains: tables, seed data for studios, games, and one user account
+
+### Importing the dump
+```bash
+mysql -u root -p db_game_studios < dump-db_game_studios.sql
