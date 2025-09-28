@@ -5,6 +5,7 @@ use App\Models\Game;
 use App\Models\Studio;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class GameController extends Controller
 {
@@ -151,4 +152,39 @@ class GameController extends Controller
 
         return back()->with('success', "$imported games imported successfully!");
     }
+
+    /**
+     * export games for the related studio
+     */
+    public function exportGamesCsv(Studio $studio)
+    {
+        $games = $studio->games()->get();
+
+        $response = new StreamedResponse(function() use ($games) {
+            $handle = fopen('php://output', 'w');
+
+            // Cabeçalho
+            fputcsv($handle, ['ID', 'Name', 'Description', 'Image', 'Genre', 'Released Date']);
+
+            // Dados
+            foreach ($games as $game) {
+                fputcsv($handle, [
+                    $game->id,
+                    $game->game_name,
+                    $game->description,
+                    $game->image,
+                    $game->genre,
+                    $game->released_date
+                ]);
+            }
+
+            fclose($handle);
+        });
+
+        $response->headers->set('Content-Type', 'text/csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename="games.csv"');
+
+        return $response;
+    }
+
 }

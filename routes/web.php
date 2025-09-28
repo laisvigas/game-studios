@@ -10,6 +10,7 @@ Route::get('/', [StudioController::class, 'index'])->name('studios.index');
 Route::get('/about', [StudioController::class, 'about'])->name('about.index');
 Route::get('/studios/{studio}/games', [GameController::class, 'indexByStudio'])->name('studios.games.index');
 Route::get('/studios/export', [StudioController::class, 'exportStudiosCsv'])->name('studios.export');
+Route::get('/studios/{studio}/games/export', [GameController::class, 'exportGamesCsv'])->name('games.export');
 
 
 // private routes

@@ -5,11 +5,11 @@
 @section('content')
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>All games from {{ $studio->studio_name }}</h1>
-
-            @auth 
-              {{-- Import CSV --}}
-              @include('games._formAddCsv')
-          @endauth
+      @auth 
+          {{-- Import CSV --}}
+          @include('games._formAddCsv')
+      @endauth
+    <a href="{{ route('games.export', $studio) }}" class="btn btn-success">Download Games</a>
   </div>
   {{-- success message --}}
   @if (session('success'))
